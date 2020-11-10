@@ -1,0 +1,8 @@
+Kikade lite på vädertjänster och både smhi och yr har var sitt API, kanske kör vi på det nästa vecka.
+* https://api.met.no/
+* https://opendata.smhi.se/apidocs/
+
+Mer relaterade tjänster:
+* https://luftdata.se/data/ (Emil)
+* https://weatherstack.com/ (Matilda)
+* https://openweathermap.org/api (Matilda) (denna verkar vara en god ersättare)
