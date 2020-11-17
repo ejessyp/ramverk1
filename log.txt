@@ -5,4 +5,15 @@ Kikade lite på vädertjänster och både smhi och yr har var sitt API, kanske k
 Mer relaterade tjänster:
 * https://luftdata.se/data/ (Emil)
 * https://weatherstack.com/ (Matilda)
-* https://openweathermap.org/api (Matilda) (denna verkar vara en god ersättare)
+* https://openweathermap.org/api (Matilda) (denna verkar vara en god ersättare)m
+Sen hade jag använt anax/configure som vanligt, läst in configfilen, och i configfilen/arrayen hade jag gjort
+ en "api_key" => file_get_contents(ANAX_INSTALL_PATH."/data/PRIVATE_TOKEN") och lagt till nån liten
+ felhantering så att det blir tydligt om jag glömt skapa filen.
+
+Helt klart hade jag också gjort en .gitignore på den PRIV filen.
+
+Sen är det en annan historia om jag hade valt att kryptera API-nyckeln eller inte.
+Men är det ingen jättehemlig data så hade jag bara kört på med nyckeln i klartext.
+Stand in the redovisa dir:
+$make phpunit options="test/Controller/BControllerTest.php"
+https://github.com/Microsoft/vscode-python/issues/1999
