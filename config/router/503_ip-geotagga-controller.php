@@ -7,7 +7,7 @@ return [
         [
             "info" => "Ip Validate Controller.",
             "mount" => "ipgeo",
-            "handler" => "\Anax\Controller\IpGeoController1",
+            "handler" => "\Anax\Controller\IpGeoController",
         ],
     ]
 ];

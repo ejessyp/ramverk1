@@ -15,5 +15,65 @@ Helt klart hade jag också gjort en .gitignore på den PRIV filen.
 Sen är det en annan historia om jag hade valt att kryptera API-nyckeln eller inte.
 Men är det ingen jättehemlig data så hade jag bara kört på med nyckeln i klartext.
 Stand in the redovisa dir:
-$make phpunit options="test/Controller/BControllerTest.php"
+$make phpunit options="test/Controller/IpGeoControllerTest.php"
 https://github.com/Microsoft/vscode-python/issues/1999
+https://github.com/dbwebb-se/ramverk1/issues/4
+
+php中使用urlencode()和urldecoe()和http_build_query()函数
+urlencode() 是指针对网页url中的中文字符的一种编码转化方式，最常见的就是Baidu、Google等搜索引擎中输入中文查询时候，生成经过Encode过的网页URL。
+
+  urlencode() 的方式一般有两种，一种是传统的基于GB2312的Encode（Baidu、Yisou等使用），另一种是基于UTF-8的Encode（Google、Yahoo等使用）
+
+  urldecode() 就是将url编码后的字符串还原成未编码的样子。
+https://openweathermap.org/current
+https://openweathermap.org/forecast5
+https://openweathermap.org/api/one-call-api
+https://openweathermap.org/price
+Get
+api.openweathermap.org/data/2.5/weather?q=london&appid=cdca5e3c6f6155697011172c77d6ea0e
+api.openweathermap.org/data/2.5/weather?q=london, uk&appid=cdca5e3c6f6155697011172c77d6ea0e
+api.openweathermap.org/data/2.5/weather?q=London&units=metric
+api.openweathermap.org/data/2.5/weather?lat=56.161&lon=15.586&appid=cdca5e3c6f6155697011172c77d6ea0e
+api.openweathermap.org/data/2.5/weather?zip=37164,se&appid=cdca5e3c6f6155697011172c77d6ea0e
+
+api.openweathermap.org/data/2.5/weather?zip=94040,us&appid=cdca5e3c6f6155697011172c77d6ea0e
+
+api.openweathermap.org/data/2.5/forecast?q=München,DE&appid=cdca5e3c6f6155697011172c77d6ea0e
+api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+http://maps.openweathermap.org/maps/2.0/weather/PAC0/12/56.161/15.586?appid=cdca5e3c6f6155697011172c77d6ea0e
+http://maps.openweathermap.org/maps/2.0/weather/{op}/{z}/{x}/{y}&appid={API key}
+
+https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+
+
+class GeoTag implements ContainerInjectableInterface
+{
+   use ContainerInjectableTrait;
+
+# Sen låta "någon" som använder klassen som har tillgång till $di injecta
+$geotag->setDI($di);
+
+# och sedan använda curl-klassen, inuti geotagg, genom att hämta den från $id
+$curl = $this->di->get("curl");
+$res = $curl->doRequest("http-some-server-api");
+
+Det låter som mcurl  inte är nödvändigt för att lösa uppgiften med det API jag gett er. Så dumt.
+Bonuspoäng till den som först kommer på hur man kan "tvinga" in användandet av mcurl  i uppgiften mot godtyckligt API som listades i issues:
+https://github.com/dbwebb-se/ramverk1/issues/4
+Tanken är alltså att ha något usecase där man skall förena multipla requester (mcurl) och visa på en och samma sida.
+
+Tips om make test
+När vi rättar era uppgifter så använder vi alltid senaste versionen av er kod, oavsett vilket kmom vi rättar. Vi kunde checkat ut er senaste tag som är relaterad till ett kmom, men vi väljer istället att köra på er "master", eller "main" branch som det numer heter på GitHub.
+Vi kör alltid er make phpunit och kollar er kodtäckning. Men om ni har pushat kod som inte fungerar i testfallen så blir det fel. Det innebär inte Ux/komplettering men det ger heller inte läraren en enkel möjlighet att stämma av läget och ev kommentera på era enhetstester.
+
+Alltså -> Se alltid till att era make phpunit  fungerar vid varje givet tillfälle. Det är dessutom en bra sak att ha i ryggraden, testsuiten funkar alltid.
+
+git add .
+git config --global user.email "ejessyp@gmail.com"
+git config --global user.name "ejessyp"
+git commit -m "Kmom02 IpGeo with map"
+git remote add origin https://github.com/ejessyp/ramverk1.git
+git push -u origin main
+
+git tag -a v2.0.0 -m "kmom02 IpGeo with map"
+git push --tags

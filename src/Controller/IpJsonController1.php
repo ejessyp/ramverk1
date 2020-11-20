@@ -19,7 +19,7 @@ use Anax\Ip\Ip;
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class IpValidatorController implements ContainerInjectableInterface
+class IpJsonController1 implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
@@ -64,50 +64,66 @@ class IpValidatorController implements ContainerInjectableInterface
     {
         $page = $this->di->get("page");
         $request     = $this->di->get("request");
-
+        $url = "{$request->getBaseUrl()}/ipjson/api";
+        var_dump($url);
         $submit = $request->getPost("submit");
         $ipAdd = $request->getPost("ip");
-
-        if ($submit) {
-            $ip = new Ip;
-            $ipjson = $ip -> getIp($ipAdd);
-            $data = [
-                "content" => json_encode($ipjson, JSON_PRETTY_PRINT),
-            ];
-
-            $page->add("anax/v2/plain/pre", $data);
-            return $page->render([
-                "title" => "Ip in Json format",
-            ]);
-        }
-    }
-
-    public function jsonActionPost()
-    {
-        $page = $this->di->get("page");
-        $request     = $this->di->get("request");
-        $url = "{$request->getBaseUrl()}/ipjson";
-        // var_dump($url);
-        $submit = $request->getPost("submit");
-        $ipAdd = $request->getPost("ip");
-        // var_dump($ipAdd);
         $data = array('ip' => $ipAdd);
 
         $options = array(
             'http' => array(
                 'header'  => "Content-type: application/json\r\n",
                 'method'  => 'POST',
-                'content' => http_build_query($data)
+                'content' => json_encode($data)
             )
         );
-        // var_dump($options);
+        var_dump($options);
         $context  = stream_context_create($options);
-        $res =  file_get_contents($url, false, $context);
-        $page->add("anax/v2/plain/pre",  [
-            "content" => $res
-        ]);
-        return $page->render([
-            "title" => "Ip in Json format",
-        ]);
+
+        return file_get_contents($url, false, $context);
+        // if ($submit) {
+        //     $ip = new Ip;
+        //     $ipjson = $ip -> getIp($ipAdd);
+        //     $data = [
+        //         "content" => json_encode($ipjson, JSON_PRETTY_PRINT),
+        //     ];
+        //
+        //     $page->add("anax/v2/plain/pre", $data);
+        //     return $page->render([
+        //         "title" => "Ip in Json format",
+        //     ]);
+        // }
+    }
+
+    public function ipActionPost()
+    {
+        if ($this->di->request->getPost('address')) {
+            $page = $this->di->get("page");
+
+            $url = "{$this->di->request->getBaseUrl()}/ipjson";
+            // $url = $this->di->get("url")->create("api/ip");
+            $data = array('address' => $this->di->request->getPost('address'));
+            $options = array(
+                'http' => array(
+                    'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                    'method'  => 'POST',
+                    'content' => http_build_query($data)
+                )
+            );
+
+            $context  = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
+
+            $result = json_decode($result);
+
+            $page->add('validate/ip/show', [
+                "result" => $result
+            ]);
+
+            return $page->render([
+                "title" => "IP Validator",
+            ]);
+        }
+        return "no address specified.";
     }
 }
