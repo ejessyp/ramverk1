@@ -10,12 +10,17 @@ namespace Anax\IpGeo;
  */
 class IpGeo
 {
-    public function getJson(string $ipAdd) : array
+    // load apikey when do an instance of IpGeo1 class
+    protected $apikey;
+    public function __construct($ipstack)
     {
-        include('../config/api/ipstack.php');
-        // var_dump($ipstack);
-        $acessKey = $ipstack;
-        $url = "http://api.ipstack.com/$ipAdd?access_key=$acessKey&hostname=1";
+        $this->apikey = $ipstack;
+    }
+
+
+    public function getJson(string $ipAdd)
+    {
+        $url = "http://api.ipstack.com/$ipAdd?access_key=$this->apikey&hostname=1";
         $res = file_get_contents($url);
 
         // var_dump($res);
@@ -23,7 +28,7 @@ class IpGeo
         $lat = $ipinfo["latitude"];
         $lng =  $ipinfo["longitude"];
         $ipinfo['link'] = "https://www.openstreetmap.org/?mlat=$lat&mlon=$lng#map=15/$lat/$lng";
-
+        // $ipinfo = json_encode($ipinfo, JSON_PRETTY_PRINT);
         return $ipinfo;
     }
 }

@@ -31,25 +31,24 @@ class IpGeoController implements ContainerInjectableInterface
      *
      * @return object
      */
-    public function indexAction() : object
+    public function indexActionGet() : object
     {
         $page = $this->di->get("page");
         $request     = $this->di->get("request");
-        $queryString = http_build_query($request->getGet(), '', ', ');
-        $ipAdd = substr($queryString, 3);
-        // if it is ipv6, change replace the %3A to ":"
-        if (strpos($ipAdd, "%3A") > 0) {
-            $ipAdd = str_replace("%3A", ":", $ipAdd);
-        }
-        // var_dump($ipAdd);
-        if ($queryString) {
-            $ip = new IpGeo;
+        // var_dump($request->getGet('ip'));
+        $submit = $request->getGet('submit');
+        $ipAdd = $request->getGet('ip');
+
+        if ($submit) {
+            // load the config file with apikey
+            include('../config/api/ipstack.php');
+            $ip = new IpGeo($ipstack);
             $ipjson = $ip -> getJson($ipAdd);
             $data = [
                 "content" => json_encode($ipjson, JSON_PRETTY_PRINT),
             ];
 
-            $page->add("ipgeo_map", $data);
+            $page->add("ipgeo", $data);
             return $page->render([
                 "title" => "Ip in Json format",
             ]);
@@ -57,28 +56,6 @@ class IpGeoController implements ContainerInjectableInterface
             $page->add("ipgeo");
             return $page->render([
                 "title" => "Ip Geotagga",
-            ]);
-        }
-    }
-
-    public function apiActionPost() : object
-    {
-        $page = $this->di->get("page");
-        $request     = $this->di->get("request");
-
-        $submit = $request->getPost("submit");
-        $ipAdd = $request->getPost("ip");
-
-        if ($submit) {
-            $ip = new IpGeo;
-            $ipjson = $ip -> getJson($ipAdd);
-            $data = [
-                "content" => json_encode($ipjson, JSON_PRETTY_PRINT),
-            ];
-            $page->add("ipgeo_map", $data);
-            // $page->add("anax/v2/plain/pre", $data);
-            return $page->render([
-                "title" => "Ip Geotagga in Json format",
             ]);
         }
     }

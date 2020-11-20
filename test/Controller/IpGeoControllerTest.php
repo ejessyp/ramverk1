@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Testclass.
  */
-class IpGeoController1Test extends TestCase
+class IpGeoControllerTest extends TestCase
 {
     // Create the di container.
     protected $di;
@@ -36,36 +36,17 @@ class IpGeoController1Test extends TestCase
     /**
      * Test the route "index".
      */
-    public function testIndexAction()
+    public function testIndexActionGet()
     {
         // Setup the controller
-        $controller = new IpGeoController1();
+        $controller = new IpGeoController();
         $controller->setDI($this->di);
         $request     = $this->di->get("request");
+        $submit = $request->getGet('submit');
+        $ipAdd = $request->getGet('ip');
         // Test the controller action
-
-        $queryString = "ip=194.47.150.9";
-        $ipAdd = "194.47.150.9";
-        $res = $controller->indexAction();
+        $res = $controller->indexActionGet();
         $this->assertInstanceOf("\Anax\Response\Response", $res);
     }
 
-
-
-    /**
-     * Test the apiActionPost
-     */
-    public function testApiActionPost()
-    {
-        // Setup the controller
-        $controller = new IpGeoController1();
-        $controller->setDI($this->di);
-        $request     = $this->di->get("request");
-        $request->setPost('ip', '194.47.150.9');
-        $request->setPost('submit', 'submit');
-        // Test the controller action
-        $res = $controller->apiActionPost();
-        $this->assertInstanceOf("\Anax\Response\Response", $res);
-        // $this->assertInstanceOf(ResponseUtility::class, $res);
-    }
 }
