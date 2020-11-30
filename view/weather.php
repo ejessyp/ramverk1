@@ -5,7 +5,7 @@ if (!isset($message)) {
     // var_dump($content_array);
     $lat = $content_array['latitude'];
     $lng = $content_array['longitude'];
-    // var_dump($history);
+    // var_dump($weather);
     // Produce $rows0 for 5 days history table
     $rows0 = "";
     foreach ($history as $row) {
@@ -16,8 +16,8 @@ if (!isset($message)) {
         }
         $rows0 .= "<tr>";
         $rows0 .= "<td><li><b>" . $today . "</b></li><li>" . date('M d', $row["dt"]) . "</li></td>";
-        $rows0 .= "<td>" .  htmlentities($row['weather'][0]['description'])  . "<img src=http://openweathermap.org/img/wn/{$row['weather'][0]['icon']}@2x.png></td>";
-        $rows0 .= "<td><li>" .  htmlentities($row['temp']) . "</li><li>" .  htmlentities($row['temp']['min']) . "</li></td>";
+        $rows0 .= "<td>" .  htmlentities($row['weather'][0]['description']) . "<img src=http://openweathermap.org/img/wn/{$row['weather'][0]['icon']}@2x.png></td>";
+        $rows0 .= "<td><li>" .  htmlentities($row['temp']) . "</li></td>";
         $rows0 .= "<td>" .  htmlentities($row['wind_speed'])  . "</td>";
         $rows0 .= "<td>" .  htmlentities($row['wind_deg'])  . "</td>";
         $rows0 .= "<td>" .  date('H:i', $row['sunrise'])  .  "</td>";

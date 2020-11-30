@@ -55,6 +55,7 @@ class WeatherController implements ContainerInjectableInterface
                     $message = "IP format not valid.";
                 }
             } else {
+                // find geo location from nominatim by placename
                 $geolocaion = new NameToGeo();
                 $ipjson = $geolocaion -> getGeo($ipAdd);
                 if (count($ipjson) == 0) {
