@@ -4,7 +4,7 @@ namespace Anax\Controller;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
-use Anax\IpGeo\IpGeo;
+use Anax\OpenWeather\NameToGeo;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -19,7 +19,7 @@ use Anax\IpGeo\IpGeo;
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class IpGeoController implements ContainerInjectableInterface
+class WeatherController1 implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
@@ -40,22 +40,44 @@ class IpGeoController implements ContainerInjectableInterface
         $ipAdd = $request->getGet('ip');
 
         if ($submit) {
-            // load the config file with apikey
-            include dirname(dirname(dirname(__FILE__))). '/config/api/ipstack.php';
-            $ip = new IpGeo($ipstack);
-            $ipjson = $ip -> getJson($ipAdd);
+            if (!(filter_var($ipAdd, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) and
+            !(filter_var($ipAdd, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4))) {
+                $geolocaion = new NameToGeo();
+                $ipjson = $geolocaion -> getGeo($ipAdd);
+                $lat = $ipjson[0] ->lat;
+                $lon = $ipjson[0] ->lon;
+            } else {
+                $ipgeoweather = $this->di->get("ipgeoweather");
+                $ipjson = $ipgeoweather->getJson($ipAdd);
+                $lat = $ipjson["latitude"];
+                $lon = $ipjson["longitude"];
+            }
+
+            var_dump($ipjson);
+            // Generate unixtime for 5 days history
+            $fiveDays = [];
+            for ($i=1; $i < 6; $i++) {
+                $fiveDays[$i] = strtotime("-$i day");
+            }
+            // Get data from openweather 5 days history and 7 days forecast
+            $openweather = $this->di->get("openweather");
+            $weather = $openweather->getCurl($lat, $lon);
+            $history = $openweather->getHistoryMCurl($lat, $lon, $fiveDays);
+
             $data = [
                 "content" => json_encode($ipjson, JSON_PRETTY_PRINT),
+                "weather" => $weather,
+                "history" => $history,
             ];
 
-            $page->add("ipgeo", $data);
+            $page->add("weather", $data);
             return $page->render([
-                "title" => "Ip in Json format",
+                "title" => "Weather",
             ]);
         } else {
-            $page->add("ipgeo");
+            $page->add("weather");
             return $page->render([
-                "title" => "Ip Geotagga",
+                "title" => "Weather",
             ]);
         }
     }

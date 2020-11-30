@@ -74,5 +74,20 @@ return [
             "url" => "verktyg",
             "title" => "Verktyg och möjligheter för utveckling.",
         ],
+        [
+            "text" => "Ip Validator",
+            "url" => "ip",
+            "title" => "Ip Validator",
+        ],
+        [
+            "text" => "Ip Geo",
+            "url" => "ipgeo",
+            "title" => "Ip Geotagga",
+        ],
+        [
+            "text" => "Weather",
+            "url" => "weather",
+            "title" => "Weather",
+        ],
     ],
 ];

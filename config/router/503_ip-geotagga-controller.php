@@ -5,7 +5,7 @@
 return [
     "routes" => [
         [
-            "info" => "Ip Validate Controller.",
+            "info" => "Ip Geo Controller.",
             "mount" => "ipgeo",
             "handler" => "\Anax\Controller\IpGeoController",
         ],

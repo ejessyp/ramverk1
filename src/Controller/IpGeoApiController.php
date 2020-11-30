@@ -43,7 +43,7 @@ class IpGeoApiController implements ContainerInjectableInterface
         return [$json];
     }
 
-    public function indexActionPost()
+    public function indexActionPost() : array
     {
         $data = $this->di->request->getBody();
         // To change %3A to ":" because of http_build_query
@@ -53,9 +53,10 @@ class IpGeoApiController implements ContainerInjectableInterface
         // var_dump($ipAdd);
         include dirname(dirname(dirname(__FILE__))). '/config/api/ipstack.php';
         $ip = new IpGeo($ipstack);
+
         $ipjson = $ip -> getJson($ipAdd);
-        $ipjson = json_encode($ipjson, JSON_PRETTY_PRINT);
-        // var_dump($json);
-        return $ipjson;
+        // $ipjson = json_encode($ipjson, JSON_PRETTY_PRINT);
+        // var_dump($ipjson);
+        return [$ipjson];
     }
 }

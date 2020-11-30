@@ -44,7 +44,7 @@ It will return something like this:
 
 <h1>Test IP with Json-api:</h1>
 Please input an IP address to test:
-<form action="ip/json" method="post">
+<form action="ipjson" method="post">
     <fieldset>
     <legend>IP Address Test</legend>
     <p>

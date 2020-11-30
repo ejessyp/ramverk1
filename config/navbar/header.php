@@ -83,5 +83,10 @@ return [
             "url" => "ipgeo",
             "title" => "Ip Geotagga",
         ],
+        [
+            "text" => "Weather",
+            "url" => "weather",
+            "title" => "Weather",
+        ],
     ],
 ];

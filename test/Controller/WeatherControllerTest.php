@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Testclass.
  */
-class IpGeoControllerTest extends TestCase
+class WeatherControllerTest extends TestCase
 {
     // Create the di container.
     protected $di;
@@ -39,18 +39,26 @@ class IpGeoControllerTest extends TestCase
     public function testIndexActionGet()
     {
         // Setup the controller
-        $controller = new IpGeoController();
+        $controller = new WeatherController();
         $controller->setDI($this->di);
         $request     = $this->di->get("request");
         $request->setGet("submit", "Submit");
         $request->setGet("ip", "194.47.150.9");
 
+
         // Test the controller action
         $res = $controller->indexActionGet();
-        $this->assertInstanceOf("\Anax\Response\Response", $res);
+
+        $this->assertInstanceOf("Anax\Response\Response", $res);
+        $this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
+        $request->setGet("ip", "stockholm");
+        $res = $controller->indexActionGet();
+        $this->assertInstanceOf("Anax\Response\Response", $res);
+        $this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
         $request->setGet("submit", "");
-        $this->assertInstanceOf("\Anax\Response\Response", $res);
+        $res = $controller->indexActionGet();
+        $this->assertInstanceOf("Anax\Response\Response", $res);
+        $this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
 
     }
-
 }

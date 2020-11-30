@@ -43,7 +43,7 @@ class IpJsonController implements ContainerInjectableInterface
         return [$json];
     }
 
-    public function indexActionPost()
+    public function indexActionPost() : array
     {
         $data = $this->di->request->getBody();
         // To change %3A to ":" because of http_build_query
@@ -68,9 +68,15 @@ class IpJsonController implements ContainerInjectableInterface
         } else {
             $valid = "False";
         }
-        $ipArr = array("ip"=> $ipAdd,"hostname"=>$hostname,"type"=>$type,"valid"=>$valid);
-        $ipArr = json_encode($ipArr);
+
+        $ipArr = [
+           "ip" => $ipAdd,
+           "hostname"=>$hostname,
+           "type"=>$type,
+           "valid"=>$valid,
+       ];
+
         //var_dump($ipArr);
-        return $ipArr;
+        return [$ipArr];
     }
 }

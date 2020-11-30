@@ -24,3 +24,40 @@
     margin-bottom: 2em;
     background-color: #ccc;
 }
+
+.forcast li {
+    list-style: none;
+}
+
+table,
+th,
+td {
+    border: 1px solid grey;
+    text-align: center;
+}
+
+table {
+    width: 90%;
+    margin: 0 auto;
+}
+
+table a {
+    color: white;
+}
+
+tr a:hover {
+    color: black;
+}
+
+th {
+    background-color: #999;
+}
+
+
+tr:hover {
+    background-color: grey;
+}
+
+.ip {
+    width: 40%;
+}

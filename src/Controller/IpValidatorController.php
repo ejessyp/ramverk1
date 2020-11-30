@@ -81,33 +81,4 @@ class IpValidatorController implements ContainerInjectableInterface
             ]);
         }
     }
-
-    public function jsonActionPost()
-    {
-        $page = $this->di->get("page");
-        $request     = $this->di->get("request");
-        $url = "{$request->getBaseUrl()}/ipjson";
-        // var_dump($url);
-        $submit = $request->getPost("submit");
-        $ipAdd = $request->getPost("ip");
-        // var_dump($ipAdd);
-        $data = array('ip' => $ipAdd);
-
-        $options = array(
-            'http' => array(
-                'header'  => "Content-type: application/json\r\n",
-                'method'  => 'POST',
-                'content' => http_build_query($data)
-            )
-        );
-        // var_dump($options);
-        $context  = stream_context_create($options);
-        $res =  file_get_contents($url, false, $context);
-        $page->add("anax/v2/plain/pre",  [
-            "content" => $res
-        ]);
-        return $page->render([
-            "title" => "Ip in Json format",
-        ]);
-    }
 }
