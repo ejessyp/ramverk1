@@ -2,7 +2,6 @@
 
 namespace Anax\IpGeo;
 
-
 /**
  * A model class retrievieng data from an external server.
  *

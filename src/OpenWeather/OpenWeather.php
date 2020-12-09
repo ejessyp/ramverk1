@@ -2,7 +2,6 @@
 
 namespace Anax\OpenWeather;
 
-
 /**
  * A model class retrievieng data from an external server.
  *
@@ -78,7 +77,6 @@ class OpenWeather
         // All of our requests are done, we can now access the results
         $response = [];
         foreach ($chAll as $ch) {
-
             $data = curl_multi_getcontent($ch);
             // var_dump(json_decode($data, true));
 

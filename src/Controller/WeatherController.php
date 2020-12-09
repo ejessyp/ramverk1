@@ -61,9 +61,9 @@ class WeatherController implements ContainerInjectableInterface
                 if (count($ipjson) == 0) {
                     $message = "Could not find the place.";
                 } else {
-                $lat = $ipjson[0] ->lat;
-                $lon = $ipjson[0] ->lon;
-                $full_add = $ipjson[0]->display_name;
+                    $lat = $ipjson[0] ->lat;
+                    $lon = $ipjson[0] ->lon;
+                    $full_add = $ipjson[0]->display_name;
                 }
             }
             if (!empty($message)) {

@@ -13,7 +13,6 @@ class IpGeoApiControllerTest extends TestCase
     // Create the di container.
     protected $di;
 
-
     /**
      * Prepare before each test.
      */
@@ -59,6 +58,5 @@ class IpGeoApiControllerTest extends TestCase
         $res = $controller->IndexActionPost();
 
         $this->assertArrayHasKey("city", $res[0]);
-
     }
 }

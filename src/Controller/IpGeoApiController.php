@@ -5,9 +5,6 @@ namespace Anax\Controller;
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Anax\IpGeo\IpGeo;
-// use Anax\Route\Exception\ForbiddenException;
-// use Anax\Route\Exception\NotFoundException;
-// use Anax\Route\Exception\InternalErrorException;
 
 /**
  * A sample JSON controller to show how a controller class can be implemented.

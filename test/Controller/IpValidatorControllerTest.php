@@ -42,11 +42,9 @@ class IpValidatorControllerTest extends TestCase
         // Setup the controller
         $controller = new IpValidatorController();
         $controller->setDI($this->di);
-        $request     = $this->di->get("request");
+        // $request     = $this->di->get("request");
         // Test the controller action
 
-        $queryString = "ip=194.47.150.9";
-        $ipAdd = "194.47.150.9";
         $res = $controller->indexAction();
         $this->assertInstanceOf("\Anax\Response\Response", $res);
     }

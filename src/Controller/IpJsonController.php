@@ -74,7 +74,7 @@ class IpJsonController implements ContainerInjectableInterface
            "hostname"=>$hostname,
            "type"=>$type,
            "valid"=>$valid,
-       ];
+        ];
 
         //var_dump($ipArr);
         return [$ipArr];

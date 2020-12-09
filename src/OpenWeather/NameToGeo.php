@@ -2,7 +2,6 @@
 
 namespace Anax\OpenWeather;
 
-
 /**
  * A model class retrievieng data from an external server.
  *

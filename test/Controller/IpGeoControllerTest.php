@@ -50,7 +50,5 @@ class IpGeoControllerTest extends TestCase
         $this->assertInstanceOf("\Anax\Response\Response", $res);
         $request->setGet("submit", "");
         $this->assertInstanceOf("\Anax\Response\Response", $res);
-
     }
-
 }

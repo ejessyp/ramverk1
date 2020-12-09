@@ -1,9 +1,9 @@
 <?php
 
 namespace Anax\IpGeo;
+
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
-
 
 /**
  * A model class retrievieng data from an external server.

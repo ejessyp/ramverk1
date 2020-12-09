@@ -28,7 +28,6 @@ Please input an IP address to test:
 </form>
 <?php
 if (isset($content)) {
-
     echo " <div class=resetBtn>
         <a href='ipgeo'>Reset Search</a>
         </div>

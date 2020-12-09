@@ -59,6 +59,5 @@ class WeatherControllerTest extends TestCase
         $res = $controller->indexActionGet();
         $this->assertInstanceOf("Anax\Response\Response", $res);
         $this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
-
     }
 }
