@@ -19,6 +19,9 @@ $make phpunit options="test/Controller/IpGeoControllerTest.php"
 https://github.com/Microsoft/vscode-python/issues/1999
 https://github.com/dbwebb-se/ramverk1/issues/4
 
+make phpunit options="test/Controller/WeatherControllerTest.php"
+
+
 php中使用urlencode()和urldecoe()和http_build_query()函数
 urlencode() 是指针对网页url中的中文字符的一种编码转化方式，最常见的就是Baidu、Google等搜索引擎中输入中文查询时候，生成经过Encode过的网页URL。
 
@@ -81,6 +84,10 @@ git tag -a v2.0.1 -m "kmom02 IpGeo REST Api with map"
 git push --tags
 
 
+rsync -av  vendor/bthpan/weather/test/config/di/ipstack.php  ./config/di/
+rsync -av  vendor/bthpan/weather/test/config/di/openweather.php  ./config/di/
+rsync -av  vendor/bthpan/weather/test/config/ipstack.php ./config/
+rsync -av  vendor/bthpan/weather/test/config/weather.php  ./config/
 
 
 Hej
@@ -118,3 +125,13 @@ B) En klass kan vara en tjänst i $di-containern, då skapar man en cionfigfil s
  If I have some common function like print out the data in html format, can I put it in the funtions.php under /src,  autoload.php will load it?
 @panqing Du behöver lägga till dessa rader i din composer.json och sen "dumpa autoloadern".
 https://github.com/canax/commons/blob/master/composer.json#L21-L23
+
+
+how to update composer ?
+$composer self-update
+Follow https://dbwebb.se/kunskap/installera-composer  to install the composer?
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"(wait when everything is finished)
+cp composer  /usr/local/bin/composer  , this composer is from Mos.

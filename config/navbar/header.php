@@ -88,5 +88,10 @@ return [
             "url" => "weather",
             "title" => "Weather",
         ],
+        [
+            "text" => "Kmom04 Weather",
+            "url" => "weather2",
+            "title" => "Kmom04 Weather",
+        ],
     ],
 ];
