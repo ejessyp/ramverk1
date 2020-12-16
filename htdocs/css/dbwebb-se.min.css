@@ -40,10 +40,10 @@ table {
     width: 90%;
     margin: 0 auto;
 }
-
+/*
 table a {
     color: white;
-}
+} */
 
 tr a:hover {
     color: black;

@@ -64,11 +64,6 @@ return [
             "title" => "Om denna webbplats.",
         ],
         [
-            "text" => "Styleväljare",
-            "url" => "style",
-            "title" => "Välj stylesheet.",
-        ],
-        [
             "text" => "Verktyg",
             "url" => "verktyg",
             "title" => "Verktyg och möjligheter för utveckling.",
@@ -92,6 +87,11 @@ return [
             "text" => "Kmom04 Weather",
             "url" => "weather2",
             "title" => "Kmom04 Weather",
+        ],
+        [
+            "text" => "Book",
+            "url" => "book",
+            "title" => "Kmom06 Book",
         ],
     ],
 ];
