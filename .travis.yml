@@ -3,8 +3,10 @@ language: php
 php:
     #- "7.2"
     - "7.4"
-    - hhvm
-    - nightly
+    
+env:
+    global:
+        - XDEBUG_MODE=coverage
 
 matrix:
     allow_failures:
