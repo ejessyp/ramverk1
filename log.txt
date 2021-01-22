@@ -80,9 +80,21 @@ git commit -m "Kmom02 IpGeo with map"
 git remote add origin https://github.com/ejessyp/ramverk1.git
 git push -u origin main
 
+
+echo "# flowerflow" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/ejessyp/flowerflow.git
+git push -u origin main
+
 git tag -a v2.0.1 -m "kmom02 IpGeo REST Api with map"
 git push --tags
 
+http://www.student.bth.se/~baaa19/dbwebb-kurser/ramverk1/me/
+http://www.student.bth.se/~ebtj19/dbwebb-kurser/design/me/proj/proj-original/
+http://www.student.bth.se/~sapt17/dbwebb-kurser/ramverk1/me/kmom10/proj/  good
 
 rsync -av  vendor/bthpan/weather/test/config/di/ipstack.php  ./config/di/
 rsync -av  vendor/bthpan/weather/test/config/di/openweather.php  ./config/di/
@@ -135,3 +147,14 @@ php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62
 php composer-setup.php
 php -r "unlink('composer-setup.php');"(wait when everything is finished)
 cp composer  /usr/local/bin/composer  , this composer is from Mos.
+
+login student database
+dbwebb login
+mysql -hblu-ray.student.bth.se -p
+f2W3UK2pqAJ7
+
+
+grep -rn "v_posts_comments_tags"
+
+
+Select * from posts where id IN (SELECT post_id from post2tag WHERE tag_name="bouquet");
